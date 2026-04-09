@@ -1,26 +1,87 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Fundo da página: uma cor sólida neutra (amarelo só em CTAs, cards e sombras) */
+  --background: #f0eeeb;
+  --foreground: #0a0a0a;
+  --surface: #faf8f5;
+  /* Sistema “bolt”: sombra offset sólida — estilo principal do site */
+  --bolt-ink: #0a0a0a;
+  --bolt-brand: #ffdb00;
+  --bolt-shadow-sm: 3px 3px 0 0 var(--bolt-ink);
+  --bolt-shadow: 4px 4px 0 0 var(--bolt-ink);
+  --bolt-shadow-md: 5px 5px 0 0 var(--bolt-ink);
+  --bolt-shadow-lg: 8px 8px 0 0 var(--bolt-ink);
+  --bolt-shadow-xl: 10px 10px 0 0 var(--bolt-ink);
+  --bolt-shadow-accent-sm: 4px 4px 0 0 var(--bolt-brand);
+  --bolt-shadow-accent: 5px 5px 0 0 var(--bolt-brand);
+  --bolt-shadow-accent-lg: 8px 8px 0 0 var(--bolt-brand);
+  --bolt-shadow-accent-xl: 10px 10px 0 0 var(--bolt-brand);
+  --bolt-shadow-light: 4px 4px 0 0 #ffffff;
+  --bolt-shadow-press: 3px 3px 0 0 var(--bolt-ink);
 }
 
+/* Amarelo = cor principal de ação e destaque (Mr. Boxes) */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-surface: var(--surface);
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-brand: #ffdb00;
+  --color-brand-hover: #f5cc00;
+  --color-brand-soft: #fff176;
+  --color-brand-wash: #ffe14d;
+  --color-brand-ink: #0a0a0a;
+  --color-brand-muted: #6b4f04;
+
+  --shadow-bolt-sm: var(--bolt-shadow-sm);
+  --shadow-bolt: var(--bolt-shadow);
+  --shadow-bolt-md: var(--bolt-shadow-md);
+  --shadow-bolt-lg: var(--bolt-shadow-lg);
+  --shadow-bolt-xl: var(--bolt-shadow-xl);
+  --shadow-bolt-accent-sm: var(--bolt-shadow-accent-sm);
+  --shadow-bolt-accent: var(--bolt-shadow-accent);
+  --shadow-bolt-accent-lg: var(--bolt-shadow-accent-lg);
+  --shadow-bolt-accent-xl: var(--bolt-shadow-accent-xl);
+  --shadow-bolt-light: var(--bolt-shadow-light);
+  --shadow-bolt-press: var(--bolt-shadow-press);
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  min-height: 100vh;
+}
+
+@layer components {
+  /* Cartão padrão: borda preta + sombra amarela (destaque) */
+  .bolt-card {
+    @apply rounded-2xl border-2 border-black bg-white shadow-bolt-accent;
+  }
+
+  /* Cartão com sombra preta (contraste / hierarquia) */
+  .bolt-card-ink {
+    @apply rounded-2xl border-2 border-black bg-white shadow-bolt-md;
+  }
+
+  /* CTA primário amarelo */
+  .bolt-cta {
+    @apply inline-flex items-center justify-center rounded-xl border-2 border-black bg-brand px-8 py-4 text-center text-base font-black uppercase tracking-wide text-black shadow-bolt-md transition;
+  }
+
+  .bolt-cta:hover {
+    @apply bg-brand-hover shadow-bolt-press;
+    transform: translate(2px, 2px);
+  }
+
+  .bolt-cta:active {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 0 var(--bolt-ink);
+  }
+
+  /* Seções: mesmo fundo da página; só bordas marcam ritmo (sem lavagem amarela) */
+  .section-surface {
+    @apply border-black/10 bg-background;
+  }
 }
