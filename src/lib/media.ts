@@ -1,18 +1,20 @@
+import { publicAssetPath } from "./base-path";
+
 /** Imagens oficiais hospedadas em mrboxes.com.br */
 export const MRBOXES_ORIGIN = "https://www.mrboxes.com.br" as const;
 
 /** Logo principal: coloque o PNG em `public/logo.png` (ou altere o caminho abaixo). */
-export const brandLogoPng = "/logo.png" as const;
+export const brandLogoPng = publicAssetPath("/logo.png");
 
 /** Fotos estáticas: caminho = URL pública (= arquivo em `public/` na raiz do projeto) */
 export const pagePhotos = {
   /** → `public/hero.png` */
-  homeHero: "/hero.png",
-  contato: "/contato.avif",
-  paraVoce: "/pravoce.avif",
-  paraSuaEmpresa: "/prasuaempresa.avif",
+  homeHero: publicAssetPath("/hero.png"),
+  contato: publicAssetPath("/contato.avif"),
+  paraVoce: publicAssetPath("/pravoce.avif"),
+  paraSuaEmpresa: publicAssetPath("/prasuaempresa.avif"),
   /** → `public/quemsomos.png` */
-  quemSomos: "/quemsomos.png",
+  quemSomos: publicAssetPath("/quemsomos.png"),
 } as const;
 
 /** Dimensões intrínsecas de `public/hero.png` — atualize se trocar o arquivo */

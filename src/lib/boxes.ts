@@ -1,3 +1,5 @@
+import { publicAssetPath } from "./base-path";
+
 /**
  * Tipos de box por volume (m³). Dimensões de piso são referência na unidade.
  */
@@ -124,5 +126,5 @@ export function tierByM3(m3: BoxM3): BoxTier | undefined {
 
 /** Fotos em `public/tipos-de-boxes/{m3}m.png` (ex.: 1m.png, 10m.png). */
 export function boxTypeImageSrc(m3: BoxM3): string {
-  return `/tipos-de-boxes/${m3}m.png`;
+  return publicAssetPath(`/tipos-de-boxes/${m3}m.png`);
 }
